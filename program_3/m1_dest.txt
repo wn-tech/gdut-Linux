@@ -1,0 +1,37 @@
+#include <unistd.h>
+#include <sys/ types. h>
+#include <sys/stat. h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+int main(int argc,char **argv)
+{
+int i, fdl, fd2,nbyte3；
+char buf[10]；
+if(argc<3){
+fprintf(stderr， "usage:%s origin destination\n"),argv[0]；
+return 1;
+}
+if((fdl=open(argv[l],O_RDONLY,0644))<0){
+fprintf(stderr,"cannot open % s for reading\n",argv[l])；
+exit(EXIT_FAILURE);
+}
+if((fd2=open(argv[2],O_WRONLY))<0){
+fprintf(stderr,"cannot open %s for writing\n",argv[2])；
+exit(EXIT_FAILURE);
+}
+while((nbytes=read(fdl,buf,10))>0) {
+if(write(fd2,buf,nbytes)<0){
+fprintf(stderr, "% s writing error!\n",argv[2])；
+exit(EXIT_FAILURE)；
+}
+for(i=0;i<10;i++)
+buf[i]='\0' ;
+}
+close(fdl)；
+close (fd2)；
+system("echo ")；
+system("echo 显示当前目录——`pwd `——的内容")；
+system("ls ")；
+exit(EXIT_SUCCESS)；
+}
